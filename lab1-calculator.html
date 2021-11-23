@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculator">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+    function getResult(e) {
+      e.preventDefault();
+      let first_no = Number(document.forms["calculator_form"]["first_no"].value);
+      let second_no = Number(document.forms["calculator_form"]["second_no"].value);
+      let operator = document.forms["calculator_form"]["operator"].value;
+      document.getElementById("display_box").style.display = "block";
+      if (isNaN(first_no) || isNaN(second_no)) {
+        document.getElementById("result_box").value = "Please enter valid Numbers";
+        return false;
+      }
+      switch (operator) {
+        case '+':
+          result = first_no + second_no;
+          document.getElementById("result_box").value = result;
+          break;
+
+        case '-':
+          result = first_no - second_no;
+          document.getElementById("result_box").value = result;
+          break;
+
+        case '*':
+          result = first_no * second_no;
+          document.getElementById("result_box").value = result;
+          break;
+
+        case '/':
+          result = first_no / second_no;
+          document.getElementById("result_box").value = result;
+          break;
+
+        default:
+          document.getElementById("result_box").value = "Invalid";
+          break;
+      }
+    }
+
+
+  </script>
+  <style type="text/css">
+    .container {
+      width: 350px;
+      border: 1px solid #d8dee4;
+      background-color: #f6f8fa;
+      border-radius: 6px;
+      padding: 18px;
+      font-size: 14px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+
+    #display_box {
+      display: none;
+    }
+
+    #result_button {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Calculator</h1>
+    <form name="calculator_form" onsubmit="getResult(event)" method="post">
+      <div class="form-group">
+        <label for="first_no">First Number</label>
+        <input type="text" class="form-control" id="first_no" name="first_no" required>
+      </div>
+      <div class="form-group">
+        <label for="second_no">Second Number</label>
+        <input type="text" class="form-control" id="second_no" name="second_no" required>
+      </div>
+      <div class="form-group">
+        <label for="operator">Operation:</label>
+        <select class="form-control" id="operator" name="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success" id="result_button">Result</button>
+    </form>
+    <div class="form-group" id="display_box">
+      <label for="result_box">Answer</label>
+      <input type="text" class="form-control" id="result_box" name="result_box" readonly>
+    </div>
+  </div>
+</body>
+
+</html>
